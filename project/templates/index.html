@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}LostBox | 首頁{% endblock %}
+
+{% block content %}
+<!--
+  section 有標題，像是導覽區、文章段落、封面區塊等。
+  讓我可以把字放在圖片上面排版。
+-->
+<section class="same cover_image">
+  <div class="textleft">
+    <h1 class="display-4 fw-bold">LostBox</h1>
+
+    <!-- 放上文字 -->
+    <p class="lead">帶每個失物找到回家的路</p>
+    <a href="{{ url_for('search') }}" class="btn btn-outline-light btn-lg mt-3">找尋失物</a>
+    <div>
+      <button class="btn btn-outline-light btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#authModal">
+        使用者登入
+      </button>
+    </div>
+  </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/show.js') }}"></script>
+{% endblock %}
