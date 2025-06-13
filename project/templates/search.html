@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}LostBox | 找尋失物{% endblock %}
+
+{% block content %}
+
+<!-- 引入 JavaScript 檔案，負責載入縣市與類別的選項。 -->
+<script src="{{ url_for('static', filename='js/load.js') }}"></script>
+
+<!-- 主內容區塊，帶有藍色背景圖片。 -->
+<section class="blue_image">
+
+  <!-- 表單提交到 Flask 的 search 路由，使用 POST 方法。 -->
+  <form method="post" action="{{ url_for('search') }}" class="form-wrapper">
+
+    <!-- 丟失地點區塊，包含圖片與地點欄位。 -->
+    <div class="mb-3">
+
+      <!-- 中央圖片區塊。 -->
+      <div class="text-center">
+        <img src="{{ url_for('static', filename='images/s_photo.png') }}" class="top_photo" />
+      </div>
+
+      <!-- 地點輸入區塊，包括縣市、鄉鎮市區與詳細位置。 -->
+      <label for="lost_county" class="form-label">丟失地點</label>
+      <div class="row g-2">
+
+        <!-- 縣市選單。 -->
+        <div class="col-md-4 col-12">
+          <select id="lost_county" name="lost_county" class="form-select">
+            <option value="">請選擇縣市</option>
+          </select>
+        </div>
+
+        <!-- 鄉鎮市區選單。 -->
+        <div class="col-md-4 col-12">
+          <select id="lost_district" name="lost_district" class="form-select">
+            <option value="">請選擇鄉鎮市區</option>
+          </select>
+        </div>
+
+        <!-- 詳細地點文字輸入欄位。 -->
+        <div class="col-md-4 col-12">
+          <input type="text" class="form-control" id="lost_location"
+            name="lost_location" placeholder="請輸入詳細位置">
+        </div>
+      </div>
+    </div>
+
+    <!-- 丟失日期與類別區塊。 -->
+    <div class="mb-3">
+      <div class="row g-2 align-items-end">
+
+        <!-- 丟失日期輸入欄位。 -->
+        <div class="col-md-3 col-12">
+          <label for="lost_date" class="form-label">丟失日期</label>
+          <input type="date" class="form-control" id="lost_date" name="lost_date">
+        </div>
+
+        <!-- 失物類別下拉選單。 -->
+        <div class="col-md-9 col-12">
+          <label for="lost_category" class="form-label">失物類別</label>
+          <select id="lost_category" name="lost_category" class="form-select">
+            <option value="">請選擇失物類別</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 表單送出按鈕。 -->
+    <div class="text-center mt-2">
+      <button type="submit" class="btn btn-outline-light btn-lg mt-2">送出</button>
+    </div>
+
+    <!-- 搜尋結果標題。 -->
+    <div class="mt-4 mb-3">
+      <h1 class="text-light">搜尋結果</h1>
+    </div>
+
+    <!-- 失物搜尋結果清單區塊。 -->
+    <div class="row">
+
+      <!-- 使用 Jinja2 迴圈渲染每一筆失物資料。 -->
+      {% for item in items %}
+      <div class="col-12 col-md-6 col-lg-6 mb-4">
+        <div class="card h-100 shadow-sm p-3">
+          <div class="d-flex align-items-start">
+
+            <!-- 判斷圖片是否存在，若存在則顯示上傳圖片，否則顯示預設圖片。 -->
+            {% if item.image_exists %}
+            <img src="{{ url_for('static', filename='lost_images/' + item.lost_image) }}"
+              style="width: 100px; height: auto; margin-right: 15px;" alt="圖片載入失敗" class="img-fluid" />
+            {% else %}
+            <img src="{{ url_for('static', filename='images/default.png') }}"
+              style="width: 100px; height: auto; margin-right: 15px;" alt="預設圖片" class="img-fluid" />
+            {% endif %}
+
+            <!-- 顯示失物的相關資訊。 -->
+            <div>
+              <h5 class="card-title mb-3">{{ item.lost_category }}</h5>
+              <p class="card-text mb-1">刊登日期：{{ item.lost_date }}</p>
+              <p class="card-text mb-1">遺失地區：{{ item.lost_county }} {{ item.lost_district }}</p>
+              <p class="card-text mb-1">遺失地點：{{ item.lost_location }}</p>
+
+              <p class="card-text mb-1">寄放地點：{{ item.member.address }}</p>
+              <p class="card-text mb-1">聯絡資訊：{{ item.member.contact }}</p>
+              <p class="card-text mb-1 mt-3 text-muted small">{{ item.note }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 若沒有符合條件的搜尋結果，顯示提示文字。 -->
+      {% else %}
+      <div class="col-12 text-center text-muted">
+        <p>沒有結果</p>
+      </div>
+      {% endfor %}
+
+    </div>
+  </form>
+</section>
+
+{% endblock %}
