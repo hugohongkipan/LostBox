@@ -1,0 +1,52 @@
+{#
+  這裡是「關於我們」頁面，繼承自 base.html 主樣板。
+  主要介紹平台理念、使用方式與使命，並強調品牌精神與吉祥物形象。
+#}
+
+{% extends "base.html" %}
+
+{% block title %}LostBox | 關於我們{% endblock %}
+
+{% block content %}
+<section class="blue_image py-5">
+  <div class="form-container about_text px-4 px-md-5 text-light">
+
+    <!-- 頁面主標題與副標介紹。 -->
+    <div class="text-center mb-5">
+      <h1 class="display-5 fw-bold">關於我們</h1>
+      <p class="lead">LostBox｜幫你找回每一件重要的小東西</p>
+    </div>
+
+    <!-- 簡介段落。 -->
+    <div class="mb-5">
+      <p class="fs-5"><strong>LostBox</strong> 是一個專門幫大家找回遺失物的平台，不管你是走失了一把傘、掉了錢包，或是在旅途中不小心遺漏了行李，我們都希望能幫上忙！</p>
+      <p class="fs-5">我們的吉祥物是一個可愛又可靠的「箱子」，象徵一個安全的空間，替人們守護記憶與物品的地方。</p>
+    </div>
+
+    <!-- 使用方式說明。 -->
+    <div class="mb-5">
+      <h3 class="mb-3 border-bottom pb-2">怎麼用？超簡單！</h3>
+      <ul class="fs-5">
+        <li><strong>一般遊客：</strong> 直接查詢失物資料，不用註冊。</li>
+        <li><strong>單位機構：</strong> 註冊 + 審核通過，就能刊登拾獲物。</li>
+      </ul>
+    </div>
+
+    <!-- 平台使命介紹。 -->
+    <div class="mb-5">
+      <h3 class="mb-3 border-bottom pb-2">我們的使命</h3>
+      <ul class="fs-5">
+        <li>提供好用的失物管理空間</li>
+        <li>幫助物品更快回到主人手上</li>
+        <li>成為失主與單位之間的橋樑</li>
+      </ul>
+    </div>
+
+    <!-- 結尾強調語句。 -->
+    <div class="text-center mt-5">
+      <p class="fw-bold fs-4">LostBox，不只是平台，是讓失物重逢的魔法箱</p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
