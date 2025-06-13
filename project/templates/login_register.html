@@ -1,0 +1,98 @@
+<!-- 這段程式碼是共用的 Modal，負責顯示登入與註冊的視窗。 -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+  <!-- 這是置中顯示的 Modal 對話框。 -->
+  <div class="modal-dialog modal-dialog-centered">
+    <!-- Modal 的主要內容容器，包含圓角、陰影和內邊距。 -->
+    <div class="modal-content rounded-4 shadow p-4 zoom-modal">
+      <!-- 關閉按鈕，位置設在右上角。 -->
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <!-- 表單滑動容器，用來包住滑動切換的登入與註冊表單。 -->
+      <div class="form-container" id="formWrapper">
+        <!-- 表單滑動包裝器，用來實現表單滑動切換效果。 -->
+        <div class="slider-wrapper" id="sliderWrapper">
+
+          <!-- 登入表單區塊。 -->
+          <div class="form-slide">
+            <!-- 登入表單，提交至 Flask 的 login 路由。 -->
+            <form method="POST" action="{{ url_for('login') }}">
+              <!-- 表單標題。 -->
+              <h5 class="text-center mb-4">登入</h5>
+
+              <!-- 電子郵件輸入欄位。 -->
+              <div class="mb-3">
+                <label for="login-email" class="form-label text-dark">電子郵件</label>
+                <input type="email" class="form-control" id="login-email" name="email" required />
+              </div>
+
+              <!-- 密碼輸入欄位。 -->
+              <div class="mb-3">
+                <label for="login-password" class="form-label text-dark">密碼</label>
+                <input type="password" class="form-control" id="login-password" name="password" required />
+              </div>
+
+              <!-- 登入按鈕。 -->
+              <button type="submit" class="btn btn-primary w-100">登入</button>
+
+              <!-- 切換至註冊表單的連結。 -->
+              <p class="text-center mt-3">
+                還沒有帳號嗎？
+                <a href="#" onclick="switchForm('register')">點此註冊</a>
+              </p>
+
+            </form>
+          </div>
+
+          <!-- 註冊表單區塊。 -->
+          <div class="form-slide">
+            <!-- 註冊表單，提交至 Flask 的 register 路由。 -->
+            <form method="POST" action="{{ url_for('register') }}">
+              <!-- 表單標題。 -->
+              <h5 class="text-center mb-4">註冊帳號</h5>
+
+              <!-- 使用者名稱輸入欄位。 -->
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">使用者名稱</label>
+                <input type="text" class="form-control" id="username" name="username" required />
+              </div>
+
+              <!-- 電子郵件輸入欄位。 -->
+              <div class="mb-3">
+                <label for="register-email" class="form-label text-dark">電子郵件</label>
+                <input type="email" class="form-control" id="register-email" name="email" required />
+              </div>
+
+              <!-- 電話號碼輸入欄位。 -->
+              <div class="mb-3">
+                <label for="contact" class="form-label text-dark">電話號碼</label>
+                <input type="text" class="form-control" id="contact" name="contact" required />
+              </div>
+
+              <!-- 住址輸入欄位。 -->
+              <div class="mb-3">
+                <label for="address" class="form-label text-dark">住址</label>
+                <input type="text" class="form-control" id="address" name="address" required />
+              </div>
+
+              <!-- 密碼輸入欄位。 -->
+              <div class="mb-3">
+                <label for="register-password" class="form-label text-dark">密碼</label>
+                <input type="password" class="form-control" id="register-password" name="password" required />
+              </div>
+
+              <!-- 註冊按鈕。 -->
+              <button type="submit" class="btn btn-success w-100">註冊</button>
+
+              <!-- 切換至登入表單的連結。 -->
+              <p class="text-center mt-3">
+                已經有帳號了？
+                <a href="#" onclick="switchForm('login')">回登入</a>
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
