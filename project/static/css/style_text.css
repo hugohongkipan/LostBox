@@ -1,0 +1,228 @@
+/*
+主題色系設定：使用灰藍色與米色營造溫暖氛圍。
+可直接透過 var(--main-color) 與 var(--secondary-color) 使用。
+*/
+:root {
+  --main-color: #5c656d;
+  --secondary-color: #e7e0d1;
+}
+
+/*
+全站背景與字體樣式設定。
+使用米色背景、灰藍字體與優雅字體（Segoe UI）。
+*/
+body {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/*
+首頁 hero section 左側文字區塊。
+透過 clamp 動態調整 X 位移，避免文字擋到圖片。
+*/
+.textleft {
+  transform: translateX(clamp(-300px, -20vw, 0px));
+  transition: transform 0.3s ease;
+  max-width: 600px;
+}
+
+/*
+導覽列樣式設定：
+ - 背景為半透明白色 + 毛玻璃效果。
+ - 使用圓角與陰影設計出現代感外觀。
+ - sticky 固定在頂部，避免滑動中消失。
+*/
+.navbar {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 3rem;
+  padding: 1rem 1rem;
+  margin: 40px auto 1rem auto;
+  max-width: 1100px;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/*
+導覽列內的連結樣式：
+ - 使用 Flex 排列。
+ - 滑鼠 hover 時有背景與顏色反轉的動態效果。
+*/
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li a {
+  border-radius: 3rem;
+  color: var(--main-color);
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar li a:hover {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+/*
+表單容器設定：最大寬度、內距與圓角。
+*/
+.form-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/*
+表單標籤顏色與間距。
+*/
+.form-label {
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/*
+輸入框與下拉選單樣式：
+ - 半透明白色背景。
+ - 圓角 + 外框。
+ - 滿版寬度與底部間距。
+*/
+.form-control,
+.form-select {
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 以下為多表單滑動切換區塊樣式（如註冊/登入分頁）。 */
+/* 外部容器設定。 */
+#formWrapper {
+  width: 400px;
+  min-height: 400px;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  transition: height 0.3s ease;
+}
+
+/* 內部滑動軌道（兩頁共用一條）。 */
+.slider-wrapper {
+  display: flex;
+  width: 800px;
+  transition: transform 0.5s ease;
+}
+
+/* 單一頁面表單樣式。 */
+.form-slide {
+  width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Modal 動畫樣式設定。 */
+.zoom-modal {
+  animation: zoomIn 0.3s ease forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 模糊背景與彈跳視窗寬度、陰影設定。 */
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.modal-dialog {
+  max-width: 50vw;
+  width: 90%;
+}
+
+.modal-content {
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* RWD 響應式設定：小螢幕下 Modal 全螢幕顯示。 */
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0;
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    box-shadow: none;
+  }
+
+  #formWrapper {
+    width: 100%;
+    max-width: none;
+    min-height: 100%;
+  }
+
+  .slider-wrapper {
+    width: 200%;
+  }
+
+  .form-slide {
+    width: 100vw;
+  }
+}
+
+/* 使用者資料卡區塊與玻璃風格卡片 */
+.account-box {
+  position: relative;
+  margin-top: 20px;
+}
+
+/* 玻璃卡片設計：背景模糊、半透明、圓角與陰影 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #333;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+/* 關於我們段落額外留白 */
+.about_text {
+  margin-top: 140px;
+}
