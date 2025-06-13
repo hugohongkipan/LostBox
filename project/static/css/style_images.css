@@ -1,0 +1,114 @@
+/* 這裡我主要放圖片的排版。 */
+.section {
+  padding: 5rem 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 1100px;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+/* 由於背景的位置設定有很多地方相同，因此把相同的設定放入same，
+   這樣不會讓css看起來太多太亂。 */
+.same {
+  /* 佔滿整個視窗高度。 */
+  height: 100vh;
+  background-size: cover;
+  margin: 0;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  /* 貼上去蓋導覽列底。 */
+  margin-top: -140px;
+  z-index: 0;
+}
+
+/* cover_image css 設定，之後放入index.html，是進入網站的門面(hero section)。 */
+.cover_image {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  background-image: url("../images/cover.png");
+}
+
+/* 藍色背景圖。 */
+.blue_image {
+  margin-top: -140px;
+  /* 抵銷 margin-top，避免內容被頂住。 */
+  padding-top: 140px;
+  background-image: url("../images/blue.png");
+  /* 垂直方向重複貼圖。 */
+  background-repeat: repeat-y;
+  /* 寬度鋪滿，高度依照圖片原尺寸重複。 */
+  background-size: 100% auto;
+  background-position: top center;
+  /* 視窗高度的101vh，會填滿畫面。 */
+  min-height: 101vh;
+}
+
+/* 刊登失物、編輯失物、查詢失物上面的圖片。 */
+.top_photo {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 手機畫面寬度時改為全寬。 */
+@media (max-width: 1024px) {
+  .top_photo {
+    max-width: 100%;
+  }
+}
+
+/* 平板畫面寬度時改為70%。 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .top_photo {
+    max-width: 85%;
+  }
+}
+
+/* 灰藍米色混合圖。 */
+.blueandbeige_image {
+  /* 佔滿整個視窗高度。 */
+  height: 100vh;
+  background-size: cover;
+  margin: 0;
+  display: flex;
+  color: white;
+  justify-content: center;
+  text-align: left;
+  /* 貼上去蓋導覽列底。 */
+  margin-top: 0px;
+  z-index: 0;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  background-image: url("../images/blueandbeige.png");
+}
+
+/* 訊息（錯誤）畫面圖片。 */
+.message_image {
+  height: 100vh;
+  /* 佔滿整個視窗高度。 */
+  background-size: cover;
+  margin: 0;
+
+  display: flex;
+  color: white;
+  justify-content: center;
+  text-align: left;
+  margin-top: 0px;
+  /* 貼上去蓋導覽列底。 */
+  z-index: 0;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  background-image: url("../images/message.png");
+}
