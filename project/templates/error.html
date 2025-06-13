@@ -1,0 +1,35 @@
+<!-- 錯誤頁面不繼承 base.html。 -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}LostBox{% endblock %}</title>
+
+  <!-- 引入 Bootstrap 樣式表（CDN）。 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- 自訂樣式表。 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_images.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_text.css') }}">
+</head>
+
+<section class="message_image">
+  <div class="text-center mt-5">
+
+    <h1 class="text-text-light mt-5">{{ message }}</h1>
+
+    <!-- 和「返回首頁」連結（使用 url_for('index')）。 -->
+    <a href="{{ url_for('index') }}" class="btn btn-secondary m-2">返回首頁</a>
+
+    <!--
+      顯示錯誤訊息。
+      提供「返回前一頁」和「返回首頁」連結（使用javascript:history.back()。
+    -->
+    <a href="javascript:history.back()" class="btn btn-primary m-2">返回前一頁</a>
+  </div>
+</section>
+
+</html>
