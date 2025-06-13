@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}LostBox | 編輯失物{% endblock %}
+
+{% block content %}
+
+<!-- 引入處理縣市與類別選單的 JavaScript。 -->
+<script src="{{ url_for('static', filename='js/load.js') }}"></script>
+
+<!-- 藍色背景區塊，包裹整體內容。 -->
+<section class="blue_image">
+
+  <!-- 表單使用 POST 方法提交至 /update 路由，並附帶失物 ID 作為查詢參數。 -->
+  <form method="post" action="{{ url_for('update') }}?item_id={{ item.id }}" enctype="multipart/form-data" class="form-wrapper">
+
+    <!-- 表單上方圖片區塊。 -->
+    <div class="mb-3">
+      <div class="text-center">
+        <img src="{{ url_for('static', filename='images/u_photo.png') }}" class="top_photo" />
+      </div>
+
+      <!-- 撿到的地點區塊。 -->
+      <div class="mb-3">
+        <label for="lost_county" class="form-label">撿到的地點</label>
+        <div class="row g-2">
+
+          <!-- 撿到的縣市選單，預設為原本的值。 -->
+          <div class="col-md-4 col-12">
+            <select id="lost_county" name="lost_county" class="form-select" required>
+              <option>{{ item.lost_county }}</option>
+            </select>
+          </div>
+
+          <!-- 撿到的鄉鎮市區選單，預設為原本的值。 -->
+          <div class="col-md-4 col-12">
+            <select id="lost_district" name="lost_district" class="form-select" required>
+              <option>{{ item.lost_district }}</option>
+            </select>
+          </div>
+
+          <!-- 撿到的詳細地點輸入欄位。 -->
+          <div class="col-md-4 col-12">
+            <input type="text" class="form-control" id="lost_location"
+              name="lost_location" placeholder="請輸入詳細位置" value="{{ item.lost_location }}" required>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 撿到的日期與失物類別區塊。 -->
+      <div class="mb-3">
+        <div class="row g-2 align-items-end">
+
+          <!-- 撿到的日期輸入欄位。 -->
+          <div class="col-md-3 col-12">
+            <label for="lost_date" class="form-label">撿到的日期</label>
+            <input type="date" class="form-control" id="lost_date"
+              value="{{ item.lost_date }}" name="lost_date" required>
+          </div>
+
+          <!-- 失物類別選單，預設顯示原始類別。 -->
+          <div class="col-md-9 col-12">
+            <label for="lost_category" class="form-label">失物類別</label>
+            <select id="lost_category" name="lost_category" class="form-select">
+              <option>{{ item.lost_category }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 上傳失物照片的欄位。 -->
+      <div class="mb-3">
+        <label for="lost_image" class="form-label">失物照片</label>
+        <input type="file" class="form-control" id="lost_image"
+          value="{{ item.lost_image }}" name="lost_image" accept="image/*">
+      </div>
+
+      <!-- 顯示寄放地點的欄位，為唯讀。 -->
+      <div class="mb-3">
+        <label for="address" class="form-label">寄放地點</label>
+        <input type="text" class="form-control" id="address" name="address"
+          placeholder="請輸入寄放地點" value="{{ member.address }}" readonly>
+      </div>
+
+      <!-- 顯示聯絡資訊的欄位，為唯讀。 -->
+      <div class="mb-3">
+        <label for="contact" class="form-label">聯絡資訊</label>
+        <input type="text" class="form-control" id="contact" name="contact"
+          placeholder="請輸入聯絡資訊" value="{{ member.contact }}" readonly>
+      </div>
+
+      <!-- 詳細描述與備註的多行輸入欄位。 -->
+      <div class="mb-3">
+        <label for="note" class="form-label">詳細描述及備註</label>
+        <textarea class="form-control" id="note" name="note" rows="4"
+          placeholder="請輸入詳細描述及備註">{{ item.note }}</textarea>
+      </div>
+
+      <!-- 送出按鈕區塊。 -->
+      <div class="text-center mt-2">
+        <button type="submit" class="btn btn-outline-light btn-lg mt-2">送出</button>
+      </div>
+
+  </form>
+</section>
+
+{% endblock %}
